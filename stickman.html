@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Tells browser what characters and how wide the page should be-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Links bootsrap css and js and my own external css-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous">      </script>
+  <link rel="stylesheet" href="styles.css">
+
+  <!--Info on tab like title and favicon-->
+  <title>Stickman</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+  <!--Links to css meant for just this page-->
+  <style>
+    /* this is used as the container for the stickmen */
+    .arena {
+      position: relative;
+      margin: 0 0 0 0;
+    }
+
+    /* this is used to make it possible for the stickmen to be animated */
+    .stickman {
+      position: absolute;
+      width: 25rem;
+      height: 25rem;
+    }
+
+    .left {
+      top: 25%;
+      left: 0%;
+    }
+
+    .right {
+      top: 25%;
+      right: 0%;
+    }
+
+    /* this is used to style finish line */
+    .dub {
+      width: 10rem;
+      height: 10rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+
+  <!--Js meant just for this page-->
+  <script>
+    function congratulate(victor){
+      document.getElementById("banner").innerHTML = victor + " won! Congratulations!";
+      document.getElementById("banner").style.visibility = "visible";
+    }
+    function fight() {
+      //resets characters
+      var player1 = document.getElementById("player1");
+      var player2 = document.getElementById("player2");
+
+      player1.style.left = "0px";
+
+      player2.style.right = "0px";
+
+      //delete winning banner
+      document.getElementById("banner").style.visibilty = "hidden";
+      
+      //moves stickmen
+      clearInterval(id);
+      var winner = 0;
+      var id = setInterval(move, 200);
+      let goal = ((window.innerWidth / 2) - player1.clientWidth) + (player1.clientWidth / 3);
+
+      function move() {
+        //once a stickman wins stop
+        if (parseInt(player1.style.left) >= goal)
+        {
+          clearInterval(id);
+          congratulate("player1");       
+        }
+        else if (parseInt(player2.style.right) >= goal)
+        {
+          clearInterval(id);
+          congratulate("player2");
+        }
+        //give random boost and moves both characters
+        winner = Math.round(Math.random());
+        var playerLeft = parseInt(player1.style.left);
+        var playerRight = parseInt(player2.style.right);
+        
+        if (winner == 0)
+        {
+          player1.style.left = (playerLeft + 5).toString() + "px";
+          player2.style.right = (playerRight + 1).toString() + "px";
+        }
+        else
+        {
+          player1.style.left = (playerLeft + 1).toString() + "px";
+          player2.style.right = (playerRight + 5).toString() + "px";
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-color">
+    <!--Navbar brand-->
+    <div class="container-fluid">
+      <a class="navbar-brand nav-font-color" href="/">
+        <img src="/images/favicon.png" alt="logo" width="30" height="30">
+        Bruh Lite
+      </a>
+
+      <!--nav links--> 
+      <div class="navbar-nav">
+        <a class="nav-link nav-font-color" href="/index.html">About</a>
+        <a class="nav-link nav-font-color" href="/stickman.html">Stickman</a>
+        <a class="nav-link nav-font-color" href="/explosions.html">Explosions</a>
+      </div>
+    </div>
+  </nav>
+
+  <!--Header-->
+  <h2 class="text-center mt-4">Bet on which stickman wins!<button onclick="fight();" class="btn btn-danger">Start!</button></h2>
+
+  <!--banner-->
+  <div class="alert alert-success text-center" id="banner" style="visibility: hidden;"></div>
+
+  <!--Actual Game Arena itself-->
+    <div class="arena" id="arena">
+      <!--Stickmen-->
+      <image src="/images/jumpingStickman.gif" class="stickman left" id="player1">
+      <image src="/images/jumpingStickman.gif" class="stickman right" id="player2">
+      <!--goal-->
+      <image src="/images/dub.png" class="dub">
+    </div>
+  </body>
+</html>

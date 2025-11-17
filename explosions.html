@@ -1,0 +1,68 @@
+  <!--
+  https://i.gifer.com/origin/58/5869b5035b6b2993997209cccd42692b_w200.gif
+  explosions game
+  -->
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Tells browser what characters and how wide the page should be-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Links bootsrap css and js and my own external css-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous">      </script>
+  <link rel="stylesheet" href="styles.css">
+
+  <!--Info on tab like title and favicon-->
+  <title>Explosions</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+  <!--Js meant just for this page-->
+  <script>
+    function explosion(){
+      const element = document.getElementById("explosion");
+      if (element.style.visibility == "visible")
+      {
+        element.style = "visibility: hidden;";
+      }
+      else
+      {
+        element.style = "visibility: visible;";
+      }
+    }
+  </script>
+</head>
+
+<body onclick="explosion();">
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-color">
+    <!--Navbar brand-->
+    <div class="container-fluid">
+      <a class="navbar-brand nav-font-color" href="/">
+        <img src="/images/favicon.png" alt="logo" width="30" height="30">
+        Bruh Lite
+      </a>
+
+      <!--nav links--> 
+      <div class="navbar-nav">
+        <a class="nav-link nav-font-color" href="/index.html">About</a>
+        <a class="nav-link nav-font-color" href="/stickman.html">Stickman</a>
+        <a class="nav-link nav-font-color" href="/explosions.html">Explosions</a>
+      </div>
+    </div>
+  </nav>
+
+  <!--Header-->
+  <h2 class="text-center mt-4">Click anywhere to make epic things</h2>
+
+  <!--explosion-->
+  <img src="https://media4.giphy.com/media/26tPdwMm4jyClgxTq/giphy.gif" alt="explosion" id="explosion" style="visibility: hidden;">
+  </body>
+</html>

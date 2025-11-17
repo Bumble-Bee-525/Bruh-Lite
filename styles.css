@@ -1,0 +1,14 @@
+/* general body css */
+body {
+  background-color: #ccf5ff;
+  color: #0066cc;
+}
+
+/* styling for navbar */
+.navbar-color {
+  background-color: #0066cc;
+}
+
+.nav-font-color {
+  color: #ccf5ff;
+}
